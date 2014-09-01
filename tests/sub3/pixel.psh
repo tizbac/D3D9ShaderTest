@@ -1,0 +1,26 @@
+struct VS_OUTPUT
+{
+	float4 hposition : POSITION;
+	float4 color0    : COLOR0;
+	float2 texcoord0 : TEXCOORD0;
+};
+
+struct PS_OUTPUT
+{
+	float4 color : COLOR;
+};
+
+sampler testTexture;
+
+PS_OUTPUT main( VS_OUTPUT IN )
+{
+	PS_OUTPUT OUT;
+    float4 texcol = tex2D( testTexture, IN.texcoord0 );
+	//OUT.color = tex2D( testTexture, IN.texcoord0 ) * IN.color0; // Modulate texel color with vertex color
+	OUT.color = float4(0,0,0,0);
+	OUT.color.rgb = IN.color0.rgb-texcol.rgb;
+
+	OUT.color.rgb -= float3(0.2,0.1,-0.4)-float3(0.1,0.1,-0.2);
+    OUT.color.a = 1.0;
+	return OUT;
+}
