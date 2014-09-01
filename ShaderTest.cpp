@@ -301,7 +301,7 @@ void initShader( void )
 
     // Assemble the vertex shader from the file
     hr = D3DXCompileShaderFromFile( __argv[1], NULL, NULL, "main",
-                                    "vs_1_1", dwShaderFlags, &pCode,
+                                    "vs_3_0", dwShaderFlags, &pCode,
                                     &pBufferErrors, &g_pConstantTableVS );
 
     if( FAILED(hr) )
@@ -322,7 +322,7 @@ void initShader( void )
 
     // Assemble the vertex shader from the file
     hr = D3DXCompileShaderFromFile( __argv[2], NULL, NULL, "main",
-                                    "ps_2_0", dwShaderFlags, &pCode,
+                                    "ps_3_0", dwShaderFlags, &pCode,
                                     &pBufferErrors, &g_pConstantTablePS );
 
     if( FAILED(hr) )
