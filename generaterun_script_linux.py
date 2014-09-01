@@ -9,7 +9,7 @@ for x in tests:
 
 for x in tests:
   outf.write("echo \"Checking %s with Win32...\"\n"%x)
-  outf.write("./threshold.py compare -metric mae tests/%s/OutputLinux.bmp tests/%s/OutputWin32.bmp tests/%s/diff.png\n"%(x,x,x));
+  outf.write("./threshold.py compare -metric mae tests/%s/OutputLinux.bmp tests/%s/OutputWin32.bmp null:\n"%(x,x));
   outf.write("if [ \"$?\" == \"0\" ]; then echo \"-- OK\"; else echo \"-- Failed\"; fi\n");
 outf.close()
 os.chmod("run.sh",448)
