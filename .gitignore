@@ -1,3 +1,5 @@
 *.bmp
 *~
 *.png
+run.sh
+run.bat
