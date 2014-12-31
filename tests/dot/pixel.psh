@@ -19,7 +19,8 @@ PS_OUTPUT main( VS_OUTPUT IN )
 	//OUT.color = tex2D( testTexture, IN.texcoord0 ) * IN.color0; // Modulate texel color with vertex color
 	OUT.color = float4(0,0,0,0);
 	float v1 = dot(IN.color0.bgra,texcol.rgba);
-	OUT.color.rgba = float4(v1,v1-1,v1-2,1);
+	float v2 = dot(IN.color0.rgb,texcol.rgb);
+	OUT.color.rgba = float4(v1,v2-1,v1-2,1);
 
 
 	return OUT;
