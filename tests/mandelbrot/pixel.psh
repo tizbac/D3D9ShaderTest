@@ -1,0 +1,40 @@
+struct VS_OUTPUT
+{
+	float4 hposition : POSITION;
+	float4 color0    : COLOR0;
+	float2 texcoord0 : TEXCOORD0;
+};
+
+struct PS_OUTPUT
+{
+	float4 color : COLOR;
+};
+
+sampler testTexture;
+
+PS_OUTPUT main( VS_OUTPUT IN ) 
+{
+	PS_OUTPUT OUT;
+    float2 c = (IN.texcoord0.xy - 0.5) * 2.0* float2(1, 1) - float2(0,0);
+        float2 v = 0;
+
+        float m = 0;
+        
+        const float r = 5;
+
+        [loop] for (int n = 0; n < 250; n++)
+        {
+            v = float2(v.x * v.x - v.y * v.y, v.x * v.y * 2) + c;
+
+            if (dot(v, v) < (r*r - 1))
+                m++;
+
+            v = clamp(v, -r, r);
+        }
+        
+        if (m == 250)
+            OUT.color=float4(0,0,0,1);
+        else
+            OUT.color=float4(sin(m/4), sin(m/5), sin(m/7), 1) / 4 + 0.75;
+	return OUT;
+}
